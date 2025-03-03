@@ -6,10 +6,10 @@ import (
 )
 
 type route struct {
-	service service.Service
+	service *service.Container
 }
 
-func InitHandler(router fiber.Router, s service.Service) {
+func InitHandler(router fiber.Router, s *service.Container) {
 	r := &route{s}
 
 	router.Post("/", r.createPost)
