@@ -1,10 +1,8 @@
 package post
 
-import (
-	"github.com/gofiber/fiber/v2"
-)
+import "github.com/gofiber/fiber/v2"
 
-func createPost(c *fiber.Ctx) error {
+func (r *route) createPost(c *fiber.Ctx) error {
 	req := &createPostRequest{}
 
 	if e := c.QueryParser(req); e != nil {

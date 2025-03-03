@@ -1,11 +1,20 @@
 package post
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"fiber-starter/internal/service"
+	"github.com/gofiber/fiber/v2"
+)
 
-func InitHandler(router fiber.Router) {
-	router.Post("/", createPost)
-	router.Get("/", getAllPosts)
-	router.Get("/:id", getPostDetail)
-	router.Put("/:id", updatePostDetail)
-	router.Delete("/:id", deletePostDetail)
+type route struct {
+	service service.Service
+}
+
+func InitHandler(router fiber.Router, s service.Service) {
+	r := &route{s}
+
+	router.Post("/", r.createPost)
+	router.Get("/", r.getAllPosts)
+	router.Get("/:id", r.getPostDetail)
+	router.Put("/:id", r.updatePostDetail)
+	router.Delete("/:id", r.deletePostDetail)
 }
