@@ -8,7 +8,9 @@ import (
 )
 
 func InitRouter(app *fiber.App) {
-	repos := repository.NewRepositoryContainer()
+	RDB := "RDB"
+	Redis := "Redis"
+	repos := repository.NewRepositoryContainer(RDB, Redis)
 	s := service.NewServiceContainer(repos)
 
 	post.InitHandler(app.Group("/post"), s)
